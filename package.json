@@ -1,0 +1,19 @@
+{
+  "name": "hckthesystem",
+  "version": "0.0.1",
+  "description": "heck",
+  "main": "dist/server/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CrazyGuy108/HckTheSystem.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CrazyGuy108/HckTheSystem/issues"
+  },
+  "homepage": "https://github.com/CrazyGuy108/HckTheSystem#readme"
+}
