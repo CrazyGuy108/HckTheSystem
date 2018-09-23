@@ -12,15 +12,15 @@ export class TaskParser
     private words: string[] = [];
 
     /**
-     * Processes the given text and translates it to listener objects.
+     * Processes the given text and translates it to a Task object.
      * @param text Text to be processed.
-     * @returns A list of tasks to be registered by the server.
+     * @returns A Task to be registered by the server.
      */
-    public parse(text: string): Task[]
+    public parse(text: string): Task
     {
         this.words = tokenizer.tokenize(text.toLowerCase());
         this.pos = 0;
-        return this.parseTopLevel();
+        return this.parseTask();
     }
 
     /**
@@ -66,32 +66,13 @@ export class TaskParser
         return natural.Metaphone.compare(word1, word2);
     }
 
-    /** TopLevel ::= (Task)* <eof> */
-    private parseTopLevel(): Task[]
-    {
-        const tasks: Task[] = [];
-        while (this.pos < this.words.length)
-        {
-            const word = this.currentWord();
-            if (this.match(word, "when"))
-            {
-                tasks.push(this.parseTask());
-            }
-            else
-            {
-                throw new Error(`Unexpected word ${this.currentWord()}`);
-            }
-        }
-        return tasks;
-    }
-
     /** Task ::= NearTask */
     private parseTask(): Task
     {
         return this.parseNearTask();
     }
 
-    /** NearTask ::= "when" (Beacon)* "is near" (Beacon) (CodeBlock) "end" */
+    /** NearTask ::= "when" (Beacon) "is near" (Beacon) "then" (Command) */
     private parseNearTask(): NearTask
     {
         this.expect("when");
@@ -99,8 +80,8 @@ export class TaskParser
         this.expect("is");
         this.expect("near");
         const object = this.parseBeacon();
-        const then = this.parseCodeBlock();
-        this.expect("end");
+        this.expect("then");
+        const then = this.parseCommand();
 
         return {type: "near", subject, object, then};
     }
@@ -115,39 +96,10 @@ export class TaskParser
         return beacon;
     }
 
-    /** CodeBlock ::= "then" (Command)+ */
-    private parseCodeBlock(): Command[]
-    {
-        this.expect("then");
-        const commands: Command[] = [];
-        // follow set of CodeBlock
-        while (!this.match(this.currentWord(), "end"))
-        {
-            commands.push(this.parseCommand());
-        }
-
-        return commands;
-    }
-
-    /** Command ::= "do" CommandHelper "done" */
-    private parseCommand(): Command
-    {
-        this.expect("do");
-        const command = this.parseCommandHelper();
-        this.expect("done");
-        return command;
-    }
-
-    /** CommandHelper ::= "alert" (words*) */
-    private parseCommandHelper(): AlertCommand
+    /** Command ::= "alert" */
+    private parseCommand(): AlertCommand
     {
         this.expect("alert");
-        const words: string[] = [];
-        while (!this.match(this.currentWord(), "done"))
-        {
-            words.push(this.currentWord());
-            this.nextWord();
-        }
-        return {type: "alert", words};
+        return {type: "alert"};
     }
 }

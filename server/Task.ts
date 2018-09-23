@@ -19,8 +19,8 @@ export interface NearTask extends TaskBase
     subject: Beacon;
     /** Second beacon. */
     object: Beacon;
-    /** Commands to be run */
-    then: Command[];
+    /** Command to be run */
+    then: Command;
 }
 
 /** Represents an estimote beaon. */
@@ -43,10 +43,8 @@ interface CommandBase
     type: CommandType;
 }
 
-/** GIves a message to the client. */
+/** Sends an alert message to the client. */
 export interface AlertCommand extends CommandBase
 {
     type: "alert";
-    /** Words to send. */
-    words: string[];
 }
