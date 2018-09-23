@@ -21,7 +21,9 @@ interface TaskOutput
     /** Whether the message is valid. */
     valid: boolean;
     /** Type of object to search for in the camera if needed. */
-    camera?: string | null;
+    camera: string | null;
+    /** Name of the estimote beacon to search for if needed. */
+    estimote: string | null;
 }
 
 const taskParser = new TaskParser();
@@ -47,12 +49,14 @@ app.post("/task", (req: Request, res: Response) =>
     let msg: string;
     let valid = true;
     let camera: string | null = null;
+    let estimote: string | null = null;
     switch (task.when.type)
     {
         case "near":
             msg = `Waiting for the ${task.when.beacon.name} beacon to approach \
 me`;
             // add a beacon handler
+            estimote = task.when.beacon.name;
             break;
         case "see":
             msg = `Searching for a ${task.when.object}`;
@@ -63,6 +67,6 @@ me`;
             valid = false;
     }
 
-    const out: TaskOutput = {msg, valid, camera};
+    const out: TaskOutput = {msg, valid, camera, estimote};
     res.send(JSON.stringify(out));
 });
