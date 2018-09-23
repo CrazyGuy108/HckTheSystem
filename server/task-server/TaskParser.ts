@@ -1,4 +1,7 @@
+import * as natural from "natural";
 import { AlertCommand, Beacon, Command, NearTask, Task } from "../Task";
+
+const tokenizer = new natural.WordTokenizer();
 
 /** Parses tasks sent to the server. */
 export class TaskParser
@@ -15,7 +18,7 @@ export class TaskParser
      */
     public parse(text: string): Task[]
     {
-        this.words = text.toLowerCase().split(/\W+/);
+        this.words = tokenizer.tokenize(text.toLowerCase());
         this.pos = 0;
         return this.parseTopLevel();
     }
