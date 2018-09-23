@@ -15,7 +15,7 @@ export class TaskParser
      */
     public parse(text: string): Task[]
     {
-        this.words = text.toLowerCase().split(" ");
+        this.words = text.toLowerCase().split(/\W+/);
         this.pos = 0;
         return this.parseTopLevel();
     }
