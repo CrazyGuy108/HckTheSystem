@@ -17,7 +17,7 @@ var board = new Board({
         console.log(loudness.readAvgMax());
       }, 500);
 
-      var buttonSensor = new DigitalButtonSensor(2);
+      var buttonSensor = new DigitalButtonSensor(29);
         //Digital Port 4
         // Button sensor
         console.log('Digital Button Sensor (start watch)')
