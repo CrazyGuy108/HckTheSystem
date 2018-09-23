@@ -149,10 +149,18 @@ export class TaskParser
         return this.parseAlertCommand();
     }
 
-    /** AlertCommand ::= "alert" */
+    /** AlertCommand ::= "alert" (Word)+ */
     private parseAlertCommand(): AlertCommand
     {
         this.expect("alert");
-        return {type: "alert"};
+        let msg = this.currentWord();
+        this.nextWord();
+        // follow set of AlertCommand is <eof>
+        while (this.pos < this.words.length)
+        {
+            msg += " " + this.currentWord();
+            this.nextWord();
+        }
+        return {type: "alert", msg};
     }
 }

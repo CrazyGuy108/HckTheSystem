@@ -36,8 +36,8 @@ io.on("connection", (socket: Socket) =>
         switch (command.type)
         {
             case "alert":
-            socket.emit("clientAlert");
-            break;
+                socket.emit("clientAlert", command.msg);
+                break;
         }
     }
 

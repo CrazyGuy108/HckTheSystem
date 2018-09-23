@@ -34,7 +34,12 @@ app.post("/task", (req: Request, res: Response) =>
     const body = req.body as TaskInput;
     console.log(`task received: ${JSON.stringify(body)}`);
 
+    // parse message
     let task: Task;
+    const out: TaskOutput =
+    {
+        msg: "Invalid message", valid: false, camera: null, estimote: null
+    };
     try
     {
         task = taskParser.parse(body.text);
@@ -42,34 +47,27 @@ app.post("/task", (req: Request, res: Response) =>
     catch (e)
     {
         console.error(e);
-        res.send(`{"msg":"Invalid message","valid":false}`);
+        res.send(JSON.stringify(out));
         return;
     }
     console.log(`parsed task: ${JSON.stringify(task)}`);
 
-    let msg: string;
-    let valid = true;
-    let camera: string | null = null;
-    let estimote: string | null = null;
     switch (task.when.type)
     {
         case "near":
-            msg = `Waiting for the ${task.when.beacon.name} beacon to approach \
-me`;
-            // add a beacon handler
-            estimote = task.when.beacon.name;
+            out.msg = `Waiting for the ${task.when.beacon.name} beacon to \
+approach me`;
+            out.valid = true;
+            out.estimote = task.when.beacon.name;
             share.estimote = task.then;
             break;
         case "see":
-            msg = `Searching for a ${task.when.object}`;
-            camera = task.when.object;
+            out.msg = `Searching for a ${task.when.object}`;
+            out.valid = true;
+            out.camera = task.when.object;
             share.nn = task.then;
             break;
-        default:
-            msg = "";
-            valid = false;
     }
 
-    const out: TaskOutput = {msg, valid, camera, estimote};
     res.send(JSON.stringify(out));
 });

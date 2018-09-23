@@ -59,4 +59,6 @@ interface CommandBase
 export interface AlertCommand extends CommandBase
 {
     type: "alert";
+    /** Message to display once triggered. */
+    msg: string;
 }
