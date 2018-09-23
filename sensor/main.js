@@ -11,10 +11,12 @@ var board = new Board({
     if (res) {
       console.log("REEAADDYY")
       var loudness = new LoudnessAnalogSensor(0);
-      loudness.on('change', function(res) {
-        console.log('noise', res);
-      })
+      setInterval(() => {
+        console.log(loudness.readAvgMax());
+      }, 500);
       loudness.watch();
+    } else {
+      console.log("FAIL TO INITAILZIE")
     }
   }
 });
