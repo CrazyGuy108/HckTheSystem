@@ -1,20 +1,22 @@
 from music21 import converter, instrument, note, chord, stream, duration
+import sys
 #**************************************************************************
 s = stream.Stream()
-text = "F sharp F sharp GA major A major GF sharp ED major D major EF sharp F sharp EE"
-print("original string: \"{}\"".format(text))
+#text = "F sharp F sharp GA major A major GF sharp ED major D major EF sharp F sharp EE"
+text = sys.stdin.readline()
+# print("original string: \"{}\"".format(text))
 text = str.lower(text)
-print(text)
+# print(text)
 text = str.split(text)
-print(text)
+# print(text)
 # for item in text:
 #     if item == 'sharp' or item == 'flat' or item == 'major' or item == 'minor':
 #         print(item)
 text2 = text
 for i in range(len(text) - 1):
-    print(i)
+    # print(i)
     if text[i] == 'sharp' or text[i] == 'flat' or text[i] == 'major' or text[i] == 'minor':
-        print(text[i])
+        # print(text[i])
         text[i] = text[i-1][len(text[i-1]) - 1] + text[i]
         text[i-1] = text[i-1].replace(text[i-1][len(text[i-1]) - 1], "")
         # if text[i-1] == "":
@@ -22,12 +24,12 @@ for i in range(len(text) - 1):
 
 text = [x for x in text if not x == ""]
 
-print(text)
+# print(text)
 # text2 = text
 for i in range(len(text)):
     if 'sharp' in text[i] or'flat' in text[i] or 'major' in text[i] or 'minor' in text[i]:
         # print(text[i])
-        print()
+        # print()
         if text[i] == 'cmajor':
             s.append(chord.Chord(['c', 'e', 'g']))
         if text[i] == 'dmajor':
@@ -62,11 +64,11 @@ for i in range(len(text)):
             s.append(note.Note(text[i][0] + "-"))
     else:
         notelist = []
-        print(text[i])
+        # print(text[i])
         for j in range(len(text[i])):
             if not text[i] == []:
                 notelist += [text[i][j]]
-        print(notelist)
+        # print(notelist)
         for x in notelist:
             s.append(note.Note(x, type = 'quarter'))
         # for x in notelist:
@@ -76,9 +78,8 @@ for i in range(len(text)):
         # #     # text.insert(i + j + 1, str.split(text[i])[j])
         # #     print(text[i][j])
         # #     # text2.insert(i + j , text[i][j])
-print(text)
-# print(text2)
-s.write("midi", "music/output.midi")
+# print(text)
+print(open(s.write("midi"), mode='rb').read())
 
 #*************************************************************************
 
