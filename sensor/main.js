@@ -2,6 +2,7 @@ var GrovePi = require('node-grovepi').GrovePi;
 var Board = GrovePi.board;
 var LoudnessAnalogSensor = GrovePi.sensors.LoudnessAnalog
 var DigitalButtonSensor = GrovePi.sensors.DigitalButton
+var LightAnalogSensor = GrovePi.sensors.LightAnalog
 
 var board = new Board({
   debug: true,
@@ -26,6 +27,15 @@ var board = new Board({
           console.log('Button onDown, data=' + res)
         })
         buttonSensor.watch()
+
+        var lightSensor = new LightAnalogSensor(12)
+          // Analog Port 3
+          // Light Sensor
+          console.log('Light Analog Sensor (start watch)')
+          lightSensor.on('change', function (res) {
+            console.log('Light onChange value=' + res)
+          })
+          lightSensor.watch()
     } else {
       console.log("FAIL TO INITAILZIE")
     }
