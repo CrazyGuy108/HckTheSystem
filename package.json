@@ -4,6 +4,7 @@
   "description": "heck",
   "main": "dist/server/index.js",
   "scripts": {
+    "ts-node": "ts-node server/index.ts",
     "tslint": "tslint -c tslint.json server/**/*.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "tsc": "tsc"
@@ -20,10 +21,13 @@
   "homepage": "https://github.com/CrazyGuy108/HckTheSystem#readme",
   "dependencies": {
     "@types/express": "^4.16.0",
+    "@types/socket.io": "^1.4.38",
     "body-parser": "^1.18.3",
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "socket.io": "^2.1.1"
   },
   "devDependencies": {
+    "ts-node": "^7.0.1",
     "tslint": "^5.11.0",
     "typescript": "^3.0.3"
   }

@@ -1,5 +1,4 @@
 /** @file Express server that establishes websocket connections. */
-
 import * as bodyParser from "body-parser";
 import express, { Application, Request, Response } from "express";
 
@@ -16,19 +15,17 @@ interface TaskOutput
     socketURL: string;
 }
 
-const taskServer: Application = express();
+const app: Application = express();
 
 const jsonParser = bodyParser.json({type: "application/json"});
-const port: number = +(process.env.PORT || 3000);
 
-taskServer.post("/", jsonParser, (req: Request, res: Response) =>
+app.post("/task", jsonParser, (req: Request, res: Response) =>
 {
     const body = req.body as TaskInput;
-    console.log(JSON.stringify(body));
-    res.send("received\n");
+    console.log(`task received: ${JSON.stringify(body)}`);
+    res.send(JSON.stringify(body));
+
+    // TODO: nlp stuff :D
 });
 
-taskServer.listen(port, () =>
-{
-    console.log(`Listening at http://localhost:${port}/`);
-});
+export const taskServer: Application = app;
