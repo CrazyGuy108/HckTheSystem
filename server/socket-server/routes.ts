@@ -45,7 +45,7 @@ io.on("connection", (socket: Socket) =>
                 break;
             case "play":
                 getMidiBytes(command.notes)
-                    .then((bytes: string) => socket.emit("playMidi", bytes));
+                    // .then((bytes: string) => socket.emit("playMidi", bytes));
                 break;
         }
     }

@@ -79,7 +79,8 @@ for i in range(len(text)):
         # #     print(text[i][j])
         # #     # text2.insert(i + j , text[i][j])
 # print(text)
-print(open(s.write("midi"), mode='rb').read())
+# print(open(s.write("midi"), mode='rb').read())
+s.show('midi')
 
 #*************************************************************************
 
