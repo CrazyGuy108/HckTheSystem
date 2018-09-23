@@ -26,9 +26,9 @@ app.post("/task", (req: Request, res: Response) =>
     console.log(`task received: ${JSON.stringify(body)}`);
     res.send(JSON.stringify(body));
 
-    const listeners = taskParser.parse(body.text);
-    for (const listener in listeners)
+    const tasks = taskParser.parse(body.text);
+    for (const task of tasks)
     {
-        // do stuff with listeners
+        console.log(`task: ${JSON.stringify(task)}`);
     }
 });
