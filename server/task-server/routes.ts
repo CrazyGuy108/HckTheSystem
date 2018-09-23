@@ -15,7 +15,8 @@ interface TaskInput
 /** Ouptut JSON given to the client. */
 interface TaskOutput
 {
-    socketURL: string;
+    /** Message to send. */
+    msg: string;
 }
 
 const taskParser = new TaskParser();
@@ -24,8 +25,24 @@ app.post("/task", (req: Request, res: Response) =>
 {
     const body = req.body as TaskInput;
     console.log(`task received: ${JSON.stringify(body)}`);
-    res.send(JSON.stringify(body));
 
     const task = taskParser.parse(body.text);
-    console.log(JSON.stringify(task));
+    console.log(`parsed task: ${JSON.stringify(task)}`);
+
+    let msg: string;
+    switch (task.when.type)
+    {
+        case "near":
+            msg = `Waiting for beacon ${task.when.subject} to approach \
+${task.when.object}`;
+            break;
+        case "see":
+            msg = `Searching for a ${task.when.object}`;
+            break;
+        default:
+            msg = "";
+    }
+
+    const out: TaskOutput = {msg};
+    res.send(JSON.stringify(out));
 });
