@@ -12,7 +12,7 @@ var board = new Board({
       console.log("REEAADDYY")
       var loudness = new LoudnessAnalogSensor(0);
       loudness.on('change', function(res) {
-        console.log(res);
+        console.log('noise', res);
       })
       loudness.watch();
     }
