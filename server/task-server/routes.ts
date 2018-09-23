@@ -2,6 +2,7 @@
  * @file Imported to register all the HTTP request routes for the task server.
  */
 import { Request, Response } from "express";
+import { share } from "../share";
 import { Task } from "../Task";
 import { app } from "./task-server";
 import { TaskParser } from "./TaskParser";
@@ -57,10 +58,12 @@ app.post("/task", (req: Request, res: Response) =>
 me`;
             // add a beacon handler
             estimote = task.when.beacon.name;
+            share.estimote = task.then;
             break;
         case "see":
             msg = `Searching for a ${task.when.object}`;
             camera = task.when.object;
+            share.nn = task.then;
             break;
         default:
             msg = "";
