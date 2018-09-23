@@ -65,6 +65,8 @@ export class TaskParser
      */
     private match(word1: string, word2: string): boolean
     {
+        word1 = natural.PorterStemmer.stem(word1);
+        word2 = natural.PorterStemmer.stem(word2);
         return natural.Metaphone.compare(word1, word2);
     }
 
@@ -122,14 +124,22 @@ export class TaskParser
         return beacon;
     }
 
-    /** SeeCondition ::= "you see a" (Word) */
+    /** SeeCondition ::= "you see a" (Word)+ */
     private parseSeeCondition(): SeeCondition
     {
         this.expect("you");
         this.expect("see");
         this.expect("a");
-        const object = this.currentWord();
+
+        let object = this.currentWord();
         this.nextWord();
+        // follow set of SeeCondition
+        while (!this.match(this.currentWord(), "then"))
+        {
+            object += " " + this.currentWord();
+            this.nextWord();
+        }
+
         return {type: "see", object};
     }
 
