@@ -1,5 +1,6 @@
 import * as natural from "natural";
-import { AlertCommand, Beacon, Command, NearTask, Task } from "../Task";
+import { AlertCommand, Beacon, Command, Condition, NearCondition, SeeCondition,
+    Task } from "../Task";
 
 const tokenizer = new natural.WordTokenizer();
 
@@ -66,24 +67,48 @@ export class TaskParser
         return natural.Metaphone.compare(word1, word2);
     }
 
-    /** Task ::= NearTask */
+    /** Task ::= (WhenTask) */
     private parseTask(): Task
     {
-        return this.parseNearTask();
+        return this.parseWhenTask();
     }
 
-    /** NearTask ::= "when" (Beacon) "is near" (Beacon) "then" (Command) */
-    private parseNearTask(): NearTask
+    /** WhenTask ::= "when" (Condition) "then" (Command) */
+    private parseWhenTask(): Task
     {
         this.expect("when");
+        const when = this.parseCondition();
+        this.expect("then");
+        const then = this.parseCommand();
+        return {when, then};
+    }
+
+    /** Condition ::= NearCondition */
+    private parseCondition(): Condition
+    {
+        if (this.match(this.currentWord(), "the"))
+        {
+            return this.parseNearCondition();
+        }
+        else if (this.match(this.currentWord(), "you"))
+        {
+            return this.parseSeeCondition();
+        }
+        else
+        {
+            throw new Error(`Unexpected word ${this.currentWord()}`);
+        }
+    }
+
+    /** NearCondition ::= (Beacon) "is near" (Beacon) */
+    private parseNearCondition(): NearCondition
+    {
         const subject = this.parseBeacon();
         this.expect("is");
         this.expect("near");
         const object = this.parseBeacon();
-        this.expect("then");
-        const then = this.parseCommand();
 
-        return {type: "near", subject, object, then};
+        return {type: "near", subject, object};
     }
 
     /** Beacon ::= "the" (Word) "beacon" */
@@ -96,8 +121,25 @@ export class TaskParser
         return beacon;
     }
 
-    /** Command ::= "alert" */
-    private parseCommand(): AlertCommand
+    /** SeeCondition ::= "you see a" (Word) */
+    private parseSeeCondition(): SeeCondition
+    {
+        this.expect("you");
+        this.expect("see");
+        this.expect("a");
+        const object = this.currentWord();
+        this.nextWord();
+        return {type: "see", object};
+    }
+
+    /** Command ::= (AlertCommand) */
+    private parseCommand(): Command
+    {
+        return this.parseAlertCommand();
+    }
+
+    /** AlertCommand ::= "alert" */
+    private parseAlertCommand(): AlertCommand
     {
         this.expect("alert");
         return {type: "alert"};
