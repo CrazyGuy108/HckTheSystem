@@ -10,7 +10,7 @@ var board = new Board({
   onInit: function(res) {
     if (res) {
       console.log("REEAADDYY")
-      var loudness = new LoudnessAnalogSensor(0);
+      var loudness = new LoudnessAnalogSensor(2);
       loudness.start();
       setInterval(() => {
         console.log(loudness.readAvgMax());
