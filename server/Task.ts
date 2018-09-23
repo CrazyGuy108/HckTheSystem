@@ -19,14 +19,12 @@ interface ConditionBase
     type: ConditionType;
 }
 
-/** Fires once an estimote beacon is near another. */
+/** Fires once an estimote beacon is near the client. */
 export interface NearCondition extends ConditionBase
 {
     type: "near";
-    /** First beacon. */
-    subject: Beacon;
-    /** Second beacon. */
-    object: Beacon;
+    /** Beacon to check. */
+    beacon: Beacon;
 }
 
 /** Fires once the camera sees a specific type of object. */

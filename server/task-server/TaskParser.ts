@@ -20,6 +20,7 @@ export class TaskParser
     public parse(text: string): Task
     {
         this.words = tokenizer.tokenize(text.toLowerCase());
+        console.log(`words; ${JSON.stringify(this.words)}`);
         this.pos = 0;
         return this.parseTask();
     }
@@ -44,14 +45,14 @@ export class TaskParser
 
     /**
      * Throws an error if the current word is not equal to the given word.
-     * @param word Word string to check against.
+     * @param words Word strings to check against.
      */
-    private expect(word: string): void
+    private expect(...words: string[]): void
     {
-        if (!this.match(this.currentWord(), word))
+        if (words.every(word => !this.match(this.currentWord(), word)))
         {
             throw new Error(
-                `Expected "${word}" but found "${this.currentWord()}"`);
+                `Expected "${words}" but found "${this.currentWord()}"`);
         }
         this.nextWord();
     }
@@ -86,7 +87,7 @@ export class TaskParser
     /** Condition ::= NearCondition */
     private parseCondition(): Condition
     {
-        if (this.match(this.currentWord(), "the"))
+        if (this.match(this.currentWord(), "i"))
         {
             return this.parseNearCondition();
         }
@@ -100,15 +101,15 @@ export class TaskParser
         }
     }
 
-    /** NearCondition ::= (Beacon) "is near" (Beacon) */
+    /** NearCondition ::= "i am near" (Beacon) */
     private parseNearCondition(): NearCondition
     {
-        const subject = this.parseBeacon();
-        this.expect("is");
+        this.expect("i");
+        this.expect("am", "m");
         this.expect("near");
-        const object = this.parseBeacon();
+        const beacon = this.parseBeacon();
 
-        return {type: "near", subject, object};
+        return {type: "near", beacon};
     }
 
     /** Beacon ::= "the" (Word) "beacon" */

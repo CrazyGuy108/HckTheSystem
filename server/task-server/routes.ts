@@ -33,8 +33,7 @@ app.post("/task", (req: Request, res: Response) =>
     switch (task.when.type)
     {
         case "near":
-            msg = `Waiting for beacon ${task.when.subject} to approach \
-${task.when.object}`;
+            msg = `Waiting for beacon ${task.when.beacon} to approach me`;
             break;
         case "see":
             msg = `Searching for a ${task.when.object}`;
