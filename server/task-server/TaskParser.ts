@@ -76,10 +76,10 @@ export class TaskParser
         return this.parseWhenTask();
     }
 
-    /** WhenTask ::= "when" (Condition) "then" (Command) */
+    /** WhenTask ::= ("when" | "if" | "once") (Condition) "then" (Command) */
     private parseWhenTask(): Task
     {
-        this.expect("when");
+        this.expect("when", "if", "once");
         const when = this.parseCondition();
         this.expect("then");
         const then = this.parseCommand();
@@ -149,10 +149,10 @@ export class TaskParser
         return this.parseAlertCommand();
     }
 
-    /** AlertCommand ::= "alert" (Word)+ */
+    /** AlertCommand ::= ("alert" | "say") (Word)+ */
     private parseAlertCommand(): AlertCommand
     {
-        this.expect("alert");
+        this.expect("alert", "say");
         let msg = this.currentWord();
         this.nextWord();
         // follow set of AlertCommand is <eof>
