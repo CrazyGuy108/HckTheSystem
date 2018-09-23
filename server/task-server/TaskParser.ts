@@ -47,12 +47,23 @@ export class TaskParser
      */
     private expect(word: string): void
     {
-        if (this.currentWord() !== word)
+        if (!this.match(this.currentWord(), word))
         {
             throw new Error(
                 `Expected "${word}" but found "${this.currentWord()}"`);
         }
         this.nextWord();
+    }
+
+    /**
+     * Tests whether two words match phonetically.
+     * @param word1 First word.
+     * @param word2 Second word.
+     * @returns Whether the two words match.
+     */
+    private match(word1: string, word2: string): boolean
+    {
+        return natural.Metaphone.compare(word1, word2);
     }
 
     /** TopLevel ::= (Task)* <eof> */
@@ -61,26 +72,26 @@ export class TaskParser
         const tasks: Task[] = [];
         while (this.pos < this.words.length)
         {
-            switch (this.currentWord())
+            const word = this.currentWord();
+            if (this.match(word, "when"))
             {
-                // first set of Task
-                case "when":
-                    tasks.push(this.parseTask());
-                    break;
-                default:
-                    throw new Error(`Unexpected word ${this.currentWord()}`);
+                tasks.push(this.parseTask());
+            }
+            else
+            {
+                throw new Error(`Unexpected word ${this.currentWord()}`);
             }
         }
         return tasks;
     }
 
-    /** Task ::= SeesTask */
+    /** Task ::= NearTask */
     private parseTask(): Task
     {
         return this.parseNearTask();
     }
 
-    /** SeesTask ::= "when" (Beacon)* "is near" (Beacon) (CodeBlock) "end" */
+    /** NearTask ::= "when" (Beacon)* "is near" (Beacon) (CodeBlock) "end" */
     private parseNearTask(): NearTask
     {
         this.expect("when");
@@ -99,8 +110,8 @@ export class TaskParser
     {
         this.expect("the");
         const beacon = {name: this.currentWord()};
-        this.expect("beacon");
         this.nextWord();
+        this.expect("beacon");
         return beacon;
     }
 
@@ -109,12 +120,11 @@ export class TaskParser
     {
         this.expect("then");
         const commands: Command[] = [];
-        do
+        // follow set of CodeBlock
+        while (!this.match(this.currentWord(), "end"))
         {
             commands.push(this.parseCommand());
         }
-        // follow set of CodeBlock
-        while (this.currentWord() !== "end");
 
         return commands;
     }
@@ -133,7 +143,7 @@ export class TaskParser
     {
         this.expect("alert");
         const words: string[] = [];
-        while (this.currentWord() !== "done")
+        while (!this.match(this.currentWord(), "done"))
         {
             words.push(this.currentWord());
             this.nextWord();
