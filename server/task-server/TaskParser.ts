@@ -20,7 +20,7 @@ export class TaskParser
     public parse(text: string): Task
     {
         this.words = tokenizer.tokenize(text.toLowerCase());
-        console.log(`words; ${JSON.stringify(this.words)}`);
+        console.log(`words: ${JSON.stringify(this.words)}`);
         this.pos = 0;
         return this.parseTask();
     }
