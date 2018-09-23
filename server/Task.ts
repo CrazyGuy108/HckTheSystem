@@ -43,10 +43,10 @@ export interface Beacon
 }
 
 /** Command object encapsulating an action to be executed. */
-export type Command = AlertCommand;
+export type Command = AlertCommand | PlayCommand;
 
 /** Types of Commands. */
-export type CommandType = "alert";
+export type CommandType = "alert" | "play";
 
 /** Base class for Commands. */
 interface CommandBase
@@ -61,4 +61,12 @@ export interface AlertCommand extends CommandBase
     type: "alert";
     /** Message to display once triggered. */
     msg: string;
+}
+
+/** Plays a list of notes. */
+export interface PlayCommand extends CommandBase
+{
+    type: "play";
+    /** Notes text. */
+    notes: string;
 }

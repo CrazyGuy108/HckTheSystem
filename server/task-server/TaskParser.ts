@@ -1,6 +1,6 @@
 import * as natural from "natural";
-import { AlertCommand, Beacon, Command, Condition, NearCondition, SeeCondition,
-    Task } from "../Task";
+import { AlertCommand, Beacon, Command, Condition, NearCondition, PlayCommand,
+    SeeCondition, Task } from "../Task";
 
 const tokenizer = new natural.WordTokenizer();
 
@@ -143,24 +143,41 @@ export class TaskParser
         return {type: "see", object};
     }
 
-    /** Command ::= (AlertCommand) */
+    /** Command ::= (AlertCommand | PlayCommand) */
     private parseCommand(): Command
     {
+        if (this.match(this.currentWord(), "play"))
+        {
+            return this.parsePlayCommand();
+        }
         return this.parseAlertCommand();
     }
 
-    /** AlertCommand ::= ("alert" | "say") (Word)+ */
+    /** AlertCommand ::= ("alert" | "say") (RestOfLine) */
     private parseAlertCommand(): AlertCommand
     {
         this.expect("alert", "say");
+        return {type: "alert", msg: this.parseRestOfLine()};
+    }
+
+    /** PlayCommand ::= "play" (RestOfLine) */
+    private parsePlayCommand(): PlayCommand
+    {
+        this.expect("play");
+        return {type: "play", notes: this.parseRestOfLine()};
+    }
+
+    /** RestOfLine: (Word)+ */
+    private parseRestOfLine(): string
+    {
         let msg = this.currentWord();
         this.nextWord();
-        // follow set of AlertCommand is <eof>
+        // follow set of RestOfLine is <eof>
         while (this.pos < this.words.length)
         {
             msg += " " + this.currentWord();
             this.nextWord();
         }
-        return {type: "alert", msg};
+        return msg;
     }
 }

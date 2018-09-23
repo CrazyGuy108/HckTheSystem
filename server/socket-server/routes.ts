@@ -1,5 +1,6 @@
 /** @file Imported to register SocketIO events. */
 import { Socket } from "socket.io";
+import { getMidiBytes } from "../../music/getMidiBytes";
 import { EventType, share } from "../share";
 import { Command } from "../Task";
 import { io } from "./socket-server";
@@ -41,6 +42,10 @@ io.on("connection", (socket: Socket) =>
             case "alert":
                 socket.emit("clientAlert", command.msg);
                 console.log(`alert: ${command.msg}`);
+                break;
+            case "play":
+                getMidiBytes(command.notes)
+                    .then((bytes: string) => socket.emit("playMidi", bytes));
                 break;
         }
     }
