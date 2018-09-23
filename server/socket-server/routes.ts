@@ -40,6 +40,7 @@ io.on("connection", (socket: Socket) =>
         {
             case "alert":
                 socket.emit("clientAlert", command.msg);
+                console.log(`alert: ${command.msg}`);
                 break;
         }
     }
