@@ -1,7 +1,7 @@
 from music21 import converter, instrument, note, chord, stream, duration
 #**************************************************************************
 s = stream.Stream()
-text = "CEGFABFCF sharp"
+text = "F sharp F sharp GA major A major GF sharp ED major D major EF sharp F sharp EE"
 print("original string: \"{}\"".format(text))
 text = str.lower(text)
 print(text)
@@ -17,11 +17,14 @@ for i in range(len(text) - 1):
         print(text[i])
         text[i] = text[i-1][len(text[i-1]) - 1] + text[i]
         text[i-1] = text[i-1].replace(text[i-1][len(text[i-1]) - 1], "")
-        if text[i-1] == "":
-            text.pop(i-1)
+        # if text[i-1] == "":
+        #     text.pop(i-1)
+
+text = [x for x in text if not x == ""]
+
 print(text)
 # text2 = text
-for i in range(len(text) - 1):
+for i in range(len(text)):
     if 'sharp' in text[i] or'flat' in text[i] or 'major' in text[i] or 'minor' in text[i]:
         # print(text[i])
         print()
@@ -61,7 +64,8 @@ for i in range(len(text) - 1):
         notelist = []
         print(text[i])
         for j in range(len(text[i])):
-            notelist += [text[i][j]]
+            if not text[i] == []:
+                notelist += [text[i][j]]
         print(notelist)
         for x in notelist:
             s.append(note.Note(x, type = 'quarter'))
