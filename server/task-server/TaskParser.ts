@@ -94,11 +94,12 @@ export class TaskParser
         return {type: "near", subject, object, then};
     }
 
-    /** Beacon ::= "beacon" (Word) */
+    /** Beacon ::= "the" (Word) "beacon" */
     private parseBeacon(): Beacon
     {
-        this.expect("beacon");
+        this.expect("the");
         const beacon = {name: this.currentWord()};
+        this.expect("beacon");
         this.nextWord();
         return beacon;
     }
