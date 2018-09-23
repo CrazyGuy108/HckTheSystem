@@ -24,6 +24,9 @@ io.on("connection", (socket: Socket) =>
         if (command)
         {
             execute(command);
+
+            socket.emit("taskFinished");
+            share[data.eventType] = undefined;
         }
     });
 
