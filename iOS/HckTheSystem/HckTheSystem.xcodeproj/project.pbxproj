@@ -7,15 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A088F6F041541F6A4727C8A0 /* Pods_HckTheSystem.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 607BDF27EE14EDB3C37EA404 /* Pods_HckTheSystem.framework */; };
 		D891C2952156C2AD00B438A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D891C2942156C2AD00B438A0 /* AppDelegate.swift */; };
 		D891C2972156C2AD00B438A0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D891C2962156C2AD00B438A0 /* ViewController.swift */; };
 		D891C29A2156C2AD00B438A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D891C2982156C2AD00B438A0 /* Main.storyboard */; };
 		D891C29D2156C2AD00B438A0 /* HckTheSystem.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D891C29B2156C2AD00B438A0 /* HckTheSystem.xcdatamodeld */; };
 		D891C29F2156C2AD00B438A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D891C29E2156C2AD00B438A0 /* Assets.xcassets */; };
 		D891C2A22156C2AD00B438A0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D891C2A02156C2AD00B438A0 /* LaunchScreen.storyboard */; };
+		D8AC9F402156CEB000DCD0AE /* 2000px-Ic_mic_48px.svg.png in Resources */ = {isa = PBXBuildFile; fileRef = D8AC9F3F2156CEB000DCD0AE /* 2000px-Ic_mic_48px.svg.png */; };
+		D8F0A48721570C8A0031E2C3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F0A48621570C8A0031E2C3 /* Constants.swift */; };
+		D8F0A48921570E360031E2C3 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F0A48821570E360031E2C3 /* Endpoint.swift */; };
+		D8F0A48B21570F4C0031E2C3 /* CreateTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F0A48A21570F4C0031E2C3 /* CreateTask.swift */; };
+		D8F0A48D21570F860031E2C3 /* TaskInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F0A48C21570F860031E2C3 /* TaskInstance.swift */; };
+		D8F0A48F215712B80031E2C3 /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F0A48E215712B80031E2C3 /* TaskViewController.swift */; };
+		D8F0A49121571E440031E2C3 /* TaskCommunicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F0A49021571E440031E2C3 /* TaskCommunicator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4B5C475B172AF44E612835A2 /* Pods-HckTheSystem.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HckTheSystem.release.xcconfig"; path = "Pods/Target Support Files/Pods-HckTheSystem/Pods-HckTheSystem.release.xcconfig"; sourceTree = "<group>"; };
+		607BDF27EE14EDB3C37EA404 /* Pods_HckTheSystem.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HckTheSystem.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B105C889B6D2E281A25EAB9D /* Pods-HckTheSystem.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HckTheSystem.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HckTheSystem/Pods-HckTheSystem.debug.xcconfig"; sourceTree = "<group>"; };
 		D891C2912156C2AD00B438A0 /* HckTheSystem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HckTheSystem.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D891C2942156C2AD00B438A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D891C2962156C2AD00B438A0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -24,6 +35,13 @@
 		D891C29E2156C2AD00B438A0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D891C2A12156C2AD00B438A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D891C2A32156C2AD00B438A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D8AC9F3F2156CEB000DCD0AE /* 2000px-Ic_mic_48px.svg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "2000px-Ic_mic_48px.svg.png"; sourceTree = "<group>"; };
+		D8F0A48621570C8A0031E2C3 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		D8F0A48821570E360031E2C3 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		D8F0A48A21570F4C0031E2C3 /* CreateTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTask.swift; sourceTree = "<group>"; };
+		D8F0A48C21570F860031E2C3 /* TaskInstance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskInstance.swift; sourceTree = "<group>"; };
+		D8F0A48E215712B80031E2C3 /* TaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
+		D8F0A49021571E440031E2C3 /* TaskCommunicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCommunicator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +49,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A088F6F041541F6A4727C8A0 /* Pods_HckTheSystem.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C146944E228FB477532612BE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B105C889B6D2E281A25EAB9D /* Pods-HckTheSystem.debug.xcconfig */,
+				4B5C475B172AF44E612835A2 /* Pods-HckTheSystem.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		D891C2882156C2AD00B438A0 = {
 			isa = PBXGroup;
 			children = (
 				D891C2932156C2AD00B438A0 /* HckTheSystem */,
 				D891C2922156C2AD00B438A0 /* Products */,
+				C146944E228FB477532612BE /* Pods */,
+				E41F24131A0303BE4A5C7626 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -57,14 +87,29 @@
 			isa = PBXGroup;
 			children = (
 				D891C2942156C2AD00B438A0 /* AppDelegate.swift */,
+				D8F0A48E215712B80031E2C3 /* TaskViewController.swift */,
 				D891C2962156C2AD00B438A0 /* ViewController.swift */,
+				D8F0A48621570C8A0031E2C3 /* Constants.swift */,
 				D891C2982156C2AD00B438A0 /* Main.storyboard */,
+				D8AC9F3F2156CEB000DCD0AE /* 2000px-Ic_mic_48px.svg.png */,
 				D891C29E2156C2AD00B438A0 /* Assets.xcassets */,
 				D891C2A02156C2AD00B438A0 /* LaunchScreen.storyboard */,
 				D891C2A32156C2AD00B438A0 /* Info.plist */,
 				D891C29B2156C2AD00B438A0 /* HckTheSystem.xcdatamodeld */,
+				D8F0A48821570E360031E2C3 /* Endpoint.swift */,
+				D8F0A48A21570F4C0031E2C3 /* CreateTask.swift */,
+				D8F0A48C21570F860031E2C3 /* TaskInstance.swift */,
+				D8F0A49021571E440031E2C3 /* TaskCommunicator.swift */,
 			);
 			path = HckTheSystem;
+			sourceTree = "<group>";
+		};
+		E41F24131A0303BE4A5C7626 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				607BDF27EE14EDB3C37EA404 /* Pods_HckTheSystem.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +119,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D891C2A62156C2AD00B438A0 /* Build configuration list for PBXNativeTarget "HckTheSystem" */;
 			buildPhases = (
+				7F738D357A9752B689475D56 /* [CP] Check Pods Manifest.lock */,
 				D891C28D2156C2AD00B438A0 /* Sources */,
 				D891C28E2156C2AD00B438A0 /* Frameworks */,
 				D891C28F2156C2AD00B438A0 /* Resources */,
+				D2C10FBB6C3FEFD5EE8FAB02 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -127,6 +174,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D891C2A22156C2AD00B438A0 /* LaunchScreen.storyboard in Resources */,
+				D8AC9F402156CEB000DCD0AE /* 2000px-Ic_mic_48px.svg.png in Resources */,
 				D891C29F2156C2AD00B438A0 /* Assets.xcassets in Resources */,
 				D891C29A2156C2AD00B438A0 /* Main.storyboard in Resources */,
 			);
@@ -134,13 +182,64 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		7F738D357A9752B689475D56 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HckTheSystem-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D2C10FBB6C3FEFD5EE8FAB02 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-HckTheSystem/Pods-HckTheSystem-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/FaveButton/FaveButton.framework",
+				"${BUILT_PRODUCTS_DIR}/Socket.IO-Client-Swift/SocketIO.framework",
+				"${BUILT_PRODUCTS_DIR}/StarscreamSocketIO/StarscreamSocketIO.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FaveButton.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SocketIO.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/StarscreamSocketIO.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HckTheSystem/Pods-HckTheSystem-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		D891C28D2156C2AD00B438A0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8F0A48D21570F860031E2C3 /* TaskInstance.swift in Sources */,
+				D8F0A49121571E440031E2C3 /* TaskCommunicator.swift in Sources */,
+				D8F0A48721570C8A0031E2C3 /* Constants.swift in Sources */,
 				D891C2972156C2AD00B438A0 /* ViewController.swift in Sources */,
+				D8F0A48F215712B80031E2C3 /* TaskViewController.swift in Sources */,
+				D8F0A48921570E360031E2C3 /* Endpoint.swift in Sources */,
 				D891C29D2156C2AD00B438A0 /* HckTheSystem.xcdatamodeld in Sources */,
+				D8F0A48B21570F4C0031E2C3 /* CreateTask.swift in Sources */,
 				D891C2952156C2AD00B438A0 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -221,6 +320,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -270,12 +370,14 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
 		D891C2A72156C2AD00B438A0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B105C889B6D2E281A25EAB9D /* Pods-HckTheSystem.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -284,13 +386,14 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.vihan.HckTheSystem;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		D891C2A82156C2AD00B438A0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4B5C475B172AF44E612835A2 /* Pods-HckTheSystem.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -299,7 +402,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.vihan.HckTheSystem;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
